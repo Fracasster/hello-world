@@ -62,7 +62,7 @@ editmenu.add_command(label = "Undo", command = NewFile)
 editmenu.add_separator()
 
 editmenu.add_command(label = "Cut", command = ("<<Cut>>"))
-editmenu.add_command(label = "Copy", command = NewFile)
+editmenu.add_command(label = "Copy", command = "<<Copy>>")
 editmenu.add_command(label = "Paste", command = NewFile)
 editmenu.add_command(label = "Delete", command = NewFile)
 editmenu.add_command(label = "Select All", command = NewFile)
@@ -73,11 +73,40 @@ helpmenu.add_command(label = "Help Index", command = NewFile)
 helpmenu.add_command(label = "About...", command = NewFile)
 menubar.add_cascade(label = "Help", menu = helpmenu)
 
+###The entries to ID the computer that has the MySQL installation.###
+        
+clientVariable = StringVar()
+client = Entry(textvariable = clientVariable, font=("Helvetica", 16))
+client.bind("<<tab>>", OnPressTab)
+store = Entry(font=("Helvetica", 16))
+store_ip = Entry(font=("Helvetica", 16))
+location = Entry(font=("Helvetica", 16))
+        
+        ###Grid Entries###
+client.grid(column=3, row=0, columnspan=2, sticky='S')
+store.grid(column=3, row=3, columnspan=2, sticky='S')
+store_ip.grid(column=3, row=6, columnspan=2, sticky='S')
+location.grid(column=3, row=9, columnspan=2, sticky='S')
+        
+        ###Labels###
+clientLabel = Label(text="Customers name. ", font=("Helvetica", 16),
+                        anchor="w",fg="white",bg="blue")
+storeLabel = Label( text="The name of the store.", font=("Helvetica", 16),
+                        anchor="w",fg="white",bg="blue")
+ipLabel = Label(text="The server's IP address.", font=("Helvetica", 16),
+                        anchor="w",fg="white",bg="blue")
+destinationLabel = Label(text="The destination folder.", font=("Helvetica", 16),
+                        anchor="w",fg="white",bg="blue")
+        
+        ###Grid Labels###
+clientLabel.grid(column=0,row=0,columnspan=2,sticky='W')
+storeLabel.grid(column=0, row=3, columnspan=2,sticky='W')
+ipLabel.grid(column=0, row=6, columnspan=2, sticky='W')
+destinationLabel.grid(column=0, row=9, columnspan=2, sticky='W')
 
 
 
-
-
+MainContainerWindow.config()
 MainContainerWindow.config(menu = menubar)
 MainContainerWindow.title("MySQL Database Backup")
 MainContainerWindow.mainloop()
